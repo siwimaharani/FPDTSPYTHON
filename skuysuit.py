@@ -30,8 +30,7 @@ def langkahPemain():
       pilihanPemain = Jari(ambilPilihan)
       return pilihanPemain 
     print("Angka salah")
-    # pilihanPemain = Jari(ambilPilihan)
-    return pilihanPemain
+    return langkahPemain()
 
 def langkahBot():
     ambilPilihan = random.randint(1,len(Jari))
