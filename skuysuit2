@@ -1,0 +1,65 @@
+import random
+from enum import IntEnum
+
+print("Selamat Datang di SKuy Suit \nMari Kita Suit")
+
+class Jari(IntEnum):
+    gunting = 1
+    batu = 2
+    kertas = 3
+
+def langkahPemain():
+    jariTersedia = [f"{i.name}[{i.value}]" for i in Jari]
+    pilihan = ", ".join(jariTersedia)
+    ambilPilihan = int(input(f"Pilih salah satu ({pilihan}): "))
+    if ambilPilihan in Jari._value2member_map_:
+      print('masuk') 
+      pilihanPemain = Jari(ambilPilihan)
+      return pilihanPemain 
+    print("Angka salah")
+    return langkahPemain() 
+
+def langkahBot():
+    ambilPilihan = random.randint(0,len(Jari)-1)
+    pilihanBot = Jari(ambilPilihan)
+    return pilihanBot
+
+def suit(pemain_1,pemain_2):
+    if pemain_1 == pemain_2:
+        print ("Hasilnya seriiii....!!!")
+    elif pemain_1 == Jari.gunting:
+        if pemain_2 == Jari.kertas:
+            print ("Pemain 1 menang ")
+        else:
+            print ("Pemain 2 menang")
+    elif pemain_1 == Jari.batu:
+        if pemain_2 == Jari.gunting:
+            print ("Pemain 1 menang ")
+        else:
+            print ("Pemain 2 menang")
+    elif pemain_1 == Jari.kertas:
+        if pemain_2 == Jari.batu:
+            print ("Pemain 1 menang ")
+        else:
+            print ("Pemain 2 menang")
+
+tipe = int(input("Pemain tunggal[0] atau ganda[1] ? "))
+babak = int(input("Berapa babak yang diinginkan? " ))
+
+if tipe==0:
+    for a in range (babak):
+        print("Babak : ", a+1)
+        print("Pemain 1 : ")
+        pemain_1 = langkahPemain()
+        print("Pemain 2 : ")
+        pemain_2 = langkahBot()
+        suit(pemain_1,pemain_2)
+
+else:
+    for b in range(babak):
+        print("Babak : ", b+1)
+        print("Pemain 1 : ")
+        pemain_1 = langkahPemain()
+        print("Pemain 1 : ")
+        pemain_2 = langkahPemain()
+        suit(pemain_1,pemain_2)
