@@ -74,7 +74,7 @@ if tipe == 0:
         print("Babak : ", a+1)
         print(pemain_1.nama, end=" ")
         pemain_1.aksi = langkahPemain()
-        pemain_2.aksi = langkahBot()
+        pemain_2.aksi = print(langkahBot())
         suit(pemain_1.aksi,pemain_2.aksi)
 elif tipe == 1:
     inputPemain_1 = str(input("Masukkan nama pemain 1: "))
@@ -94,8 +94,8 @@ else:
 
 print("\n\n")
 print("======= TOTAL MENANG =======")
-print("total menang ({pemain_1.nama}) : ",pemain_1.totalMenang())
-print("total menang ({pemain_2.nama}) : ",pemain_2.totalMenang())
+print("total menang ",(pemain_1.nama), ":",pemain_1.totalMenang())
+print("total menang", (pemain_2.nama), ": ",pemain_2.totalMenang())
 print("\n")
 print("======= PEMENANG AKHIR =======")
 if pemain_1.totalMenang() == pemain_2.totalMenang():
@@ -106,7 +106,3 @@ elif pemain_1.totalMenang() > pemain_2.totalMenang():
 else:
     pemenang = pemain_2.nama
     print(pemenang.upper())
-
-
-    
-    
