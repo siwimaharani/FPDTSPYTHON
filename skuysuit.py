@@ -1,18 +1,36 @@
 import random
 from enum import IntEnum
 
-print("Selamat Datang di SKuy Suit \nMari Kita Suit")
+print("Selamat Datang di Skuy Suit \nMari Kita Suit")
 
 class Jari(IntEnum):
     gunting = 1
     batu = 2
     kertas = 3
 
+class Pemain():
+    def __init__(self, nama = "komputer"):
+        self.nama = nama
+        self.jmlMenang = 0
+    
+    def menang(self, nilai):
+        self.jmlMenang += nilai
+    
+    def aksi(self):
+        self.aksiDipilih = Jari()
+
+    # def kalah():
+    #     self.jmlMenang +=0
+
 def langkahPemain():
     jariTersedia = [f"{i.name}[{i.value}]" for i in Jari]
     pilihan = ", ".join(jariTersedia)
     ambilPilihan = int(input(f"Pilih salah satu ({pilihan}): "))
-    pilihanPemain = Jari(ambilPilihan)
+    if ambilPilihan in Jari._value2member_map_:
+      pilihanPemain = Jari(ambilPilihan)
+      return pilihanPemain 
+    print("Angka salah")
+    # pilihanPemain = Jari(ambilPilihan)
     return pilihanPemain
 
 def langkahBot():
@@ -39,26 +57,34 @@ def suit(pemain_1,pemain_2):
         else:
             print ("Pemain 2 menang")
 
-tipe = int(input("Pemain tunggal[0] atau ganda[1] ? "))
 babak = int(input("Berapa babak yang diinginkan? " ))
+tipe = int(input("Pemain tunggal[0] atau ganda[1] ? "))
 
-if tipe==0:
+if tipe == 0:
+    inputPemain_1 = str(input("Masukkan nama pemain: "))
+    pemain_1 = Pemain(inputPemain_1)
+    pemain_2 = Pemain()
     for a in range (babak):
         print("Babak : ", a+1)
-        print("Pemain 1 : ")
-        pemain_1 = langkahPemain()
-        print("Pemain 2 : ")
-        pemain_2 = langkahBot()
-        suit(pemain_1,pemain_2)
-
-else:
+        print(pemain_1.nama)
+        pemain_1.aksi = langkahPemain()
+        pemain_2.aksi = langkahBot()
+        suit(pemain_1.aksi,pemain_2.aksi)
+elif tipe == 1:
+    inputPemain_1 = str(input("Masukkan nama pemain 1: "))
+    inputPemain_2 = str(input("Masukkan nama pemain 2: "))
+    pemain_1 = Pemain(inputPemain_1)
+    pemain_2 = Pemain(inputPemain_2)
     for b in range(babak):
         print("Babak : ", b+1)
-        print("Pemain 1 : ")
-        pemain_1 = langkahPemain()
-        print("Pemain 1 : ")
-        pemain_2 = langkahPemain()
-        suit(pemain_1,pemain_2)
+        print(pemain_1.nama)
+        pemain_1.aksi = langkahPemain()
+        print(pemain_2.nama)
+        pemain_2.aksi = langkahPemain()
+        suit(pemain_1.aksi,pemain_2.aksi)
+else:
+    print("Anda salah memasukkan input")
+
 
     
     
