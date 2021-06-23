@@ -4,24 +4,23 @@ from enum import IntEnum
 print("Selamat Datang di SKuy Suit \nMari Kita Suit")
 
 class Jari(IntEnum):
-    gunting = 1
-    batu = 2
-    kertas = 3
+    gunting = 0
+    batu = 1
+    kertas = 2
 
 def langkahPemain():
     jariTersedia = [f"{i.name}[{i.value}]" for i in Jari]
     pilihan = ", ".join(jariTersedia)
     ambilPilihan = int(input(f"Pilih salah satu ({pilihan}): "))
     if ambilPilihan in Jari._value2member_map_:
-      print('masuk') 
       pilihanPemain = Jari(ambilPilihan)
       return pilihanPemain 
     print("Angka salah")
     return langkahPemain() 
 
 def langkahBot():
-    ambilPilihan = random.randint(0,len(Jari)-1)
-    pilihanBot = Jari(ambilPilihan)
+    ambilPilihan2 = random.randint(0,len(Jari)-1)
+    pilihanBot = Jari(ambilPilihan2)
     return pilihanBot
 
 def suit(pemain_1,pemain_2):
