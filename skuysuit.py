@@ -90,6 +90,7 @@ elif tipe == 1:
         suit(pemain_1.aksi,pemain_2.aksi)
 else:
     print("Anda salah memasukkan input")
+    quit()
 
 print("\n\n")
 print("======= TOTAL MENANG =======")
@@ -97,7 +98,9 @@ print("total menang ({pemain_1.nama}) : ",pemain_1.totalMenang())
 print("total menang ({pemain_2.nama}) : ",pemain_2.totalMenang())
 print("\n")
 print("======= PEMENANG AKHIR =======")
-if pemain_1.totalMenang() > pemain_2.totalMenang():
+if pemain_1.totalMenang() == pemain_2.totalMenang():
+    print("Hasilnya Seri!!!!")
+elif pemain_1.totalMenang() > pemain_2.totalMenang():
     pemenang = pemain_1.nama
     print(pemenang.upper())
 else:
