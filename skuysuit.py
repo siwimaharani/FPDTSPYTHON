@@ -117,7 +117,3 @@ elif pemain_1.totalMenang() > pemain_2.totalMenang():
 else:
     pemenang = pemain_2.nama
     print(pemenang.upper())
-
-
-    
-    
