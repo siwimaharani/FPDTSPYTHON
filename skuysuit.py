@@ -1,7 +1,10 @@
 import random
 from enum import IntEnum
+import time
 
-print("Selamat Datang di Skuy Suit \nMari Kita Suit")
+print("\n\nSelamat Datang di Skuy Suit")
+time.sleep(1.5)
+print("Mari Kita Suit")
 
 class Jari(IntEnum):
     gunting = 1
@@ -64,39 +67,47 @@ def suit(suit_1,suit_2):
             print ("Yang menang : ",pemain_2.nama)
 
 babak = int(input("Berapa babak yang diinginkan? " ))
-tipe = int(input("Pemain tunggal[0] atau ganda[1] ? "))
-
-if tipe == 0:
-    inputPemain_1 = str(input("Masukkan nama pemain: "))
-    pemain_1 = Pemain(inputPemain_1)
-    pemain_2 = Pemain()
-    for a in range (babak):
-        print("Babak : ", a+1)
-        print(pemain_1.nama, end=" ")
-        pemain_1.aksi = langkahPemain()
-        pemain_2.aksi = langkahBot()
-        suit(pemain_1.aksi,pemain_2.aksi)
-elif tipe == 1:
-    inputPemain_1 = str(input("Masukkan nama pemain 1: "))
-    inputPemain_2 = str(input("Masukkan nama pemain 2: "))
-    pemain_1 = Pemain(inputPemain_1)
-    pemain_2 = Pemain(inputPemain_2)
-    for b in range(babak):
-        print("Babak : ", b+1)
-        print(pemain_1.nama, end=" ")
-        pemain_1.aksi = langkahPemain()
-        print(pemain_2.nama, end=" ")
-        pemain_2.aksi = langkahPemain()
-        suit(pemain_1.aksi,pemain_2.aksi)
-else:
-    print("Anda salah memasukkan input")
+if babak <= 0:
+    print("Babak tidak boleh kurang dari 1 !!!")
     quit()
+else:
+    tipe = int(input("\nPemain tunggal[0] atau ganda[1] ? "))
 
-print("\n\n")
-print("======= TOTAL MENANG =======")
-print("total menang ({pemain_1.nama}) : ",pemain_1.totalMenang())
-print("total menang ({pemain_2.nama}) : ",pemain_2.totalMenang())
+    if tipe == 0:
+        inputPemain_1 = str(input("Masukkan nama pemain: "))
+        pemain_1 = Pemain(inputPemain_1)
+        pemain_2 = Pemain()
+        for a in range (babak):
+            print("Babak : ", a+1)
+            print(pemain_1.nama, end=" ")
+            pemain_1.aksi = langkahPemain()
+            pemain_2.aksi = langkahBot()
+            time.sleep(1)
+            suit(pemain_1.aksi,pemain_2.aksi)
+    elif tipe == 1:
+        inputPemain_1 = str(input("Masukkan nama pemain 1: "))
+        inputPemain_2 = str(input("Masukkan nama pemain 2: "))
+        pemain_1 = Pemain(inputPemain_1)
+        pemain_2 = Pemain(inputPemain_2)
+        for b in range(babak):
+            print("\nBabak : ", b+1)
+            print(pemain_1.nama, end=" ")
+            pemain_1.aksi = langkahPemain()
+            print(pemain_2.nama, end=" ")
+            pemain_2.aksi = langkahPemain()
+            time.sleep(1)
+            suit(pemain_1.aksi,pemain_2.aksi)
+    else:
+        print("Anda salah memasukkan input")
+        quit()
+
+time.sleep(1)
 print("\n")
+print("======= TOTAL MENANG =======")
+print("total menang ",(pemain_1.nama), ":",pemain_1.totalMenang())
+print("total menang", (pemain_2.nama), ": ",pemain_2.totalMenang())
+print("\n")
+time.sleep(1.5)
 print("======= PEMENANG AKHIR =======")
 if pemain_1.totalMenang() == pemain_2.totalMenang():
     print("Hasilnya Seri!!!!")
